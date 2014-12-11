@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -37,3 +37,33 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+# Devise
+gem 'devise', '3.4.1'
+
+#Active admin
+gem 'activeadmin', github: 'activeadmin'
+
+# Bootstrap
+gem 'bootstrap-sass'
+
+# Rails Best Practise
+gem "rails_best_practices"
+
+# Font Awesome
+gem "font-awesome-rails"
+
+#custom autoincrement value for a model
+gem 'protokoll'
+
+# Pry
+gem 'pry', group: [:development]
+
+#Role based Access
+gem 'cancan'
+
+#Pdf Generation
+gem 'prawn'
+
+# Pagination
+gem 'kaminari'
