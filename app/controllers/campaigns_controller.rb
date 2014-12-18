@@ -1,0 +1,16 @@
+class CampaignsController < ApplicationController
+  def index
+  end
+
+  def new
+  end
+
+  def _form
+  end
+
+  def edit
+  end
+
+  def show
+  end
+end

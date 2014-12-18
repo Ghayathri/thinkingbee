@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
 # Company
 	resources :companies do
 		collection do
@@ -15,6 +16,12 @@ Rails.application.routes.draw do
 
 # Leads
 	resources :leads
+
+# Accounts
+	resources :accounts
+
+# Contacts
+	resources :contacts
 
 # Activities
 	resources :phone_calls do
@@ -49,6 +56,53 @@ Rails.application.routes.draw do
 			get 'view_invoice'
 		end
 	end
+
+# Quotes and More
+	resources :quotes do
+		collection do
+			get 'view_quote'
+		end
+	end
+	resources :price_books do
+		collection do
+			get 'view_book'
+		end
+	end
+
+# Vendor
+	resources :vendors do
+		collection do
+			get 'view_vendor'
+		end
+	end
+
+# Products and More
+	resources :products do
+		collection do
+			get 'view_product'
+		end
+	end
+
+	resources :cases do
+		collection do
+			get 'view_case'
+		end
+	end
+
+	resources :solutions do
+		collection do
+			get 'view_solution'
+		end
+	end
+
+# Potentials
+	resources :potentials
+
+# Appointments
+	resources :appointments
+
+# Campaigns
+	resources :campaigns
 
 # Landing Page
 root 'leads#index'

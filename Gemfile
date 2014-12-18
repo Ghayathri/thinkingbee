@@ -67,3 +67,9 @@ gem 'prawn'
 
 # Pagination
 gem 'kaminari'
+
+# Report
+gem 'axlsx_rails'
+
+# Chart
+gem 'chart-js-rails'

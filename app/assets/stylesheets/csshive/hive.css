@@ -95,7 +95,7 @@ footer {
 
 #subnav{
     margin-top: -20px;
-    background-color: transparent;
+    background-color: #eeeeee;
     border-bottom: 1px solid #eeeeee;
 }
 
@@ -124,4 +124,10 @@ footer {
 /* =========== Error Message ========== */
 .error-message{
     color: red;
+}
+
+
+/* ========== Full Calendar Style ========== */
+.fc-unthemed .fc-popover, .fc-unthemed .fc-row, .fc-unthemed hr, .fc-unthemed tbody, .fc-unthemed td, .fc-unthemed th, .fc-unthemed thead {
+    border-color: rgb(225, 214, 14);
 }

@@ -232,3 +232,19 @@ CallStatus.delete_all
 	CallStatus.create(name: "Not Attending")
 	CallStatus.create(name: "Not Reacheable")
 	CallStatus.create(name: "Not Interested")
+
+ProductStatus.delete_all
+
+	ProductStatus.create(name: "Active")
+	PricingStatus.create(name: "InActive")
+
+Tax.delete_all
+	
+	Tax.create(name: "Sales Tax")
+	Tax.create(name: "VAT")
+
+UsageUnit.delete_all
+
+	UsageUnit.create(name: "KG")
+	UsageUnit.create(name: "Liter")
+	UsageUnit.create(name: "Gram")
