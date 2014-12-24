@@ -7,6 +7,7 @@ class Account < ActiveRecord::Base
 	has_many :cases
 	has_many :appointments
 	has_many :contacts
+	has_many :potentials
 	belongs_to :company
 	belongs_to :account_owner, class_name: "User", foreign_key: "owner"
 	belongs_to :rating
@@ -14,5 +15,5 @@ class Account < ActiveRecord::Base
 
 	# Delegates
 	delegate :name, to: :rating, prefix: true, allow_nil: true
-	delegate :name, to: :account_type, prefix: true, allow_nil: true 
+	delegate :name, to: :account_type, prefix: true, allow_nil: true
 end

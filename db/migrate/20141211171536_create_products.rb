@@ -16,13 +16,12 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :company_id
       t.timestamps
     end
-
     add_index :products, :owner
     add_index :products, :product_status_id
     add_index :products, :vendor_id
     add_index :products, :product_category_id
     add_index :products, :usage_unit_id
     add_index :products, :tax_id
-    add_index :products, :company_id 
+    add_index :products, :company_id
   end
 end

@@ -12,6 +12,8 @@ class CreateGenerals < ActiveRecord::Migration
       t.string 	:location
       t.string	:twitter
       t.string 	:linkedin
+      t.integer :general_info_id
+      t.integer :general_info_type
       t.timestamps
     end
   end

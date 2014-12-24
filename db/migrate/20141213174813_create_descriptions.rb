@@ -7,5 +7,7 @@ class CreateDescriptions < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :descriptions, :descripable_id
+    add_index :descriptions, :descripable_type
   end
 end

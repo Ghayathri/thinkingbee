@@ -41,8 +41,21 @@ class SolutionsController < ApplicationController
   end
 
   def view_solution
-      @solution = Solution.find(params[:id])
-      render layout: false
+    @solution = Solution.find(params[:id])
+    render layout: false
+  end
+
+   # Dashboard
+  def dashboard
+    
+  end
+
+    # Report
+  def report
+    @solutions = current_company.solutions
+    respond_to do |format|
+      format.xlsx
+    end
   end
 
   private

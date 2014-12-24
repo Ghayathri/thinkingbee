@@ -1,3 +1,8 @@
+body{
+    background-image: url("/assets/imghive/geometry.png");
+    background-repeat: repeat;
+    background-position: fixed;
+}
 /* ==== Overridding Bootstrap ==== */
 .main_nav {
     border-radius: 0;
@@ -69,6 +74,10 @@ footer {
     border-bottom: 1px solid #DDDDDD;
     margin: -15px 0 21px;
     padding-bottom: 9.5px;
+}
+
+.table-hover > tbody > tr.warning:hover > th {
+    background-color: rgb(255,199,14);
 }
 
 /* ========== Landing Page ========== */

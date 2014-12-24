@@ -7,6 +7,7 @@ class Lead < ActiveRecord::Base
 	belongs_to :rating
 	belongs_to :industry
 	belongs_to :lead_owner, class_name: "User", foreign_key: "owner"
+	has_one :information, as: :general_info, class_name: "Address"
 
 	# Delegates
 	delegate :name, to: :lead_owner, prefix: true, allow_nil: true

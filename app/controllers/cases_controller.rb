@@ -40,9 +40,23 @@ class CasesController < ApplicationController
     redirect_to cases_path
   end
 
+  # Modal View
   def view_case
-      @case = Case.find(params[:id])
-      render layout: false
+    @case = Case.find(params[:id])
+    render layout: false
+  end
+
+  # Dashboard
+  def dashboard
+    
+  end
+
+    # Report
+  def report
+    @cases = current_company.cases
+    respond_to do |format|
+      format.xlsx
+    end
   end
 
   private

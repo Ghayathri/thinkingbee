@@ -25,5 +25,6 @@ class CreateSalesOrders < ActiveRecord::Migration
     add_index :sales_orders, :order_status_id
     add_index :sales_orders, :account_id
     add_index :sales_orders, :company_id
+    add_index :sales_orders, :quote_id
   end
 end

@@ -6,6 +6,8 @@
 					<small><i class="fa fa-book"></i> Price Book</small>
 					<div class="pull-right">
 						<%= link_to "<i class='fa fa-plus'></i> New Book".html_safe, new_price_book_path, class: "btn btn-warning btn-sm" %>
+						<%= link_to "<i class='fa fa-bar-chart-o'></i> Dashboard".html_safe, dashboard_price_books_path, class: "btn btn-success btn-sm" %>
+						<%= link_to "<i class='fa fa-file-excel-o'></i> Report".html_safe, report_price_books_path(:format => :xlsx), class: "btn btn-danger btn-sm" %>
 					</div>
 				</h1>
 			</div>

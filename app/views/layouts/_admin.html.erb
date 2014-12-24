@@ -14,8 +14,8 @@
 			<div class="navbar-collapse collapse" id="navbar-main">
 				<ul class="nav navbar-nav navbar-right">
 					<li class=""><a href="#"><i class="fa fa-bar-chart-o"></i> Dashboard</a></li>
-					<li class="<%= request.fullpath.include?("calendars") == true ? 'active' : '' %>"><a href="/calendars"><i class="fa fa-calendar"> Calendar</i></a></li>
-					 <li class="<%= request.fullpath.include?("admin") == true ? 'active' : '' %>"><a href="/admin"><i class="fa fa-male">&nbsp;Users</i></a></li>
+					<li class="<%= request.fullpath.include?("calendars") == true ? 'active' : '' %>"><a href="/calendars"><i class="fa fa-calendar"></i> Calendar</a></li>
+					<li class="<%= request.fullpath.include?("admin") == true ? 'active' : '' %>"><a href="/admin"><i class="fa fa-male"></i> User</a></li>
 					<li class="<%= (request.fullpath.include?("users/edit") && action_name=="edit") == true ? 'active' : '' %>"><a href="/users/edit"><i class="fa fa-cog"></i> Settings</a></li>
 					<li><%= link_to "<i class='fa fa-power-off'></i> Logout".html_safe, destroy_user_session_path, method: :delete %></li>
 				</ul>
@@ -36,17 +36,18 @@
 		<div class="navbar-collapse collapse" id="navbar-sub">
 			<ul class="nav navbar-nav navbar-left">
 				<li class="<%= request.fullpath.include?("leads") == true ? 'active' : '' %>"><%= link_to "<i class='fa fa-users'></i> Leads".html_safe, leads_path %></li>
-				<li class="<%= request.fullpath.include?("contacts") == true ? 'active' : '' %>"><a href="#"><i class="fa fa-user"></i> Contacts</a></li>
-				<li class="<%= request.fullpath.include?("accounts") == true ? 'active' : '' %>"><a href="#"><i class="fa fa-list-ul"></i> Account</a></li>
-				<li class="<%= request.fullpath.include?("potentials") == true ? 'active' : '' %>"><a href="#"><i class="fa fa-briefcase"></i> Potentials</a></li>
-				<li class="<%= request.fullpath.include?("campaigns") == true ? 'active' : '' %>"><a href="#"><i class="fa fa-volume-up"></i> Campaigns</a></li>
-				<li class="<%= request.fullpath.include?("vendors") == true ? 'active' : '' %>"><a href="/vendors"><i class="fa fa-truck"> Vendor</i></a></li>
+				<li class="<%= request.fullpath.include?("accounts") == true ? 'active' : '' %>"><a href="/accounts"><i class="fa fa-list-ul"></i> Account</a></li>
+				<li class="<%= request.fullpath.include?("potentials") == true ? 'active' : '' %>"><a href="/potentials"><i class="fa fa-briefcase"></i> Potentials</a></li>
+				<li class="<%= request.fullpath.include?("campaigns") == true ? 'active' : '' %>"><a href="/campaigns"><i class="fa fa-volume-up"></i> Campaigns</a></li>
+				<li class="<%= request.fullpath.include?("vendors") == true ? 'active' : '' %>"><a href="/vendors"><i class="fa fa-truck"></i> Vendors</a></li>
+				<li class="<%= request.fullpath.include?("contacts") == true ? 'active' : '' %>"><a href="/contacts"><i class="fa fa-user"></i> Contacts</a></li>
 				<li class="dropdown <%= (request.fullpath.include?("tasks") || request.fullpath.include?("events") || request.fullpath.include?("phone_calls")) == true ? 'active' : '' %>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" fa fa-bell-o"></i> Activities <b class="caret"></b></a>
 	                <ul class="dropdown-menu">
 	                    <li><a href="/tasks"><i class=" fa fa-tasks"></i> Tasks</a></li>
 	                    <li><a href="/events"><i class="fa fa-bullhorn"></i> Events</a></li>
 	                    <li><a href="/phone_calls"><i class="fa fa-phone"></i>  Phone Calls</a></li>
+	                    <li><a href="/appointments"><i class="fa fa-clock-o"></i>  Appointments</a></li>
 	                </ul>
                 </li>
                 <li class="dropdown <%= (request.fullpath.include?("products") || request.fullpath.include?("cases") || request.fullpath.include?("solutions")) == true ? 'active' : '' %>">

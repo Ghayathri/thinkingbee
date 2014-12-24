@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217190239) do
+ActiveRecord::Schema.define(version: 20141218041142) do
 
   create_table "account_types", force: true do |t|
     t.string   "name"
@@ -62,8 +62,28 @@ ActiveRecord::Schema.define(version: 20141217190239) do
     t.string   "state"
     t.integer  "zip_code"
     t.string   "country"
-    t.integer  "addressable_id"
-    t.integer  "addressable_type"
+    t.string   "billing_street"
+    t.string   "billing_city"
+    t.string   "billing_state"
+    t.string   "billing_zip_code"
+    t.string   "billing_country"
+    t.integer  "address_id"
+    t.integer  "address_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "addresses", ["address_id"], name: "index_addresses_on_address_id"
+  add_index "addresses", ["address_type"], name: "index_addresses_on_address_type"
+
+  create_table "appointment_statuses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "appointment_types", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -75,15 +95,15 @@ ActiveRecord::Schema.define(version: 20141217190239) do
     t.integer  "regarding"
     t.datetime "start_date_time"
     t.datetime "end_date_time"
-    t.integer  "appointment_type"
-    t.integer  "appointment_status"
+    t.integer  "appointment_type_id"
+    t.integer  "appointment_status_id"
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "appointments", ["appointment_status"], name: "index_appointments_on_appointment_status"
-  add_index "appointments", ["appointment_type"], name: "index_appointments_on_appointment_type"
+  add_index "appointments", ["appointment_status_id"], name: "index_appointments_on_appointment_status_id"
+  add_index "appointments", ["appointment_type_id"], name: "index_appointments_on_appointment_type_id"
   add_index "appointments", ["company_id"], name: "index_appointments_on_company_id"
   add_index "appointments", ["owner"], name: "index_appointments_on_owner"
   add_index "appointments", ["regarding"], name: "index_appointments_on_regarding"
@@ -234,6 +254,9 @@ ActiveRecord::Schema.define(version: 20141217190239) do
     t.datetime "updated_at"
   end
 
+  add_index "descriptions", ["descripable_id"], name: "index_descriptions_on_descripable_id"
+  add_index "descriptions", ["descripable_type"], name: "index_descriptions_on_descripable_type"
+
   create_table "event_statuses", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -271,6 +294,8 @@ ActiveRecord::Schema.define(version: 20141217190239) do
     t.string   "location"
     t.string   "twitter"
     t.string   "linkedin"
+    t.integer  "general_info_id"
+    t.integer  "general_info_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -395,9 +420,33 @@ ActiveRecord::Schema.define(version: 20141217190239) do
   end
 
   create_table "potentials", force: true do |t|
+    t.string   "name"
+    t.integer  "owner"
+    t.integer  "amount"
+    t.integer  "contact_id"
+    t.date     "closing_date"
+    t.integer  "account_id"
+    t.integer  "potential_stage_id"
+    t.integer  "potential_type_id"
+    t.integer  "probability"
+    t.string   "next_step"
+    t.integer  "expected_revenue"
+    t.integer  "lead_source_id"
+    t.integer  "campaign_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "potentials", ["account_id"], name: "index_potentials_on_account_id"
+  add_index "potentials", ["campaign_id"], name: "index_potentials_on_campaign_id"
+  add_index "potentials", ["company_id"], name: "index_potentials_on_company_id"
+  add_index "potentials", ["contact_id"], name: "index_potentials_on_contact_id"
+  add_index "potentials", ["lead_source_id"], name: "index_potentials_on_lead_source_id"
+  add_index "potentials", ["next_step"], name: "index_potentials_on_next_step"
+  add_index "potentials", ["owner"], name: "index_potentials_on_owner"
+  add_index "potentials", ["potential_stage_id"], name: "index_potentials_on_potential_stage_id"
+  add_index "potentials", ["potential_type_id"], name: "index_potentials_on_potential_type_id"
 
   create_table "price_books", force: true do |t|
     t.string   "name"
@@ -554,6 +603,7 @@ ActiveRecord::Schema.define(version: 20141217190239) do
   add_index "sales_orders", ["owner"], name: "index_sales_orders_on_owner"
   add_index "sales_orders", ["potential_id"], name: "index_sales_orders_on_potential_id"
   add_index "sales_orders", ["purchase_order_id"], name: "index_sales_orders_on_purchase_order_id"
+  add_index "sales_orders", ["quote_id"], name: "index_sales_orders_on_quote_id"
 
   create_table "solution_statuses", force: true do |t|
     t.string   "name"

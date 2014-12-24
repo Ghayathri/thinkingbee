@@ -6,6 +6,7 @@ class Contact < ActiveRecord::Base
 	has_many :invoices
 	has_many :quotes
 	has_many :cases
+	has_many :potentials
 	belongs_to :company
 	belongs_to :contact_owner, class_name: "User", foreign_key: "owner"
 	belongs_to :lead_source

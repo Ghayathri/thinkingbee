@@ -2,9 +2,10 @@ class Campaign < ActiveRecord::Base
 
 	# Relationship
 	belongs_to :company
-	belongs_to :campaign_owner, class_name: "User", foriegn_key: "owner"
+	belongs_to :campaign_owner, class_name: "User", foreign_key: "owner"
 	belongs_to :campaign_type
 	belongs_to :campaign_status
+	has_many   :potentials
 
 	# Delegate
 	delegate :name, to: :campaign_type, prefix: true, allow_nil: true

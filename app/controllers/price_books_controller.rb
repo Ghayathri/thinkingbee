@@ -41,8 +41,21 @@ class PriceBooksController < ApplicationController
   end
 
   def view_book
-      @book = PriceBook.find(params[:id])
-      render layout: false
+    @book = PriceBook.find(params[:id])
+    render layout: false
+  end
+
+   # Dashboard
+  def dashboard
+    
+  end
+
+    # Report
+  def report
+    @books = current_company.price_books
+    respond_to do |format|
+      format.xlsx
+    end
   end
 
   private

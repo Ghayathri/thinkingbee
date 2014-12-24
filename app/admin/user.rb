@@ -9,7 +9,7 @@ actions :all, except: [:edit, :destroy]
   end
 
   index do
-    render partial: 'index'
+    render partial: 'index', :users => @users
   end
 
   show do
@@ -47,7 +47,7 @@ actions :all, except: [:edit, :destroy]
   permit_params :email, :password , :password_confirmation, :company_id
 
   form do |f|
-     render partial: 'form'
+     render partial: 'form', :users => @users
   end
 
 end

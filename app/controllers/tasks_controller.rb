@@ -41,8 +41,21 @@ class TasksController < ApplicationController
   end
 
   def view_task
-      @task = Task.find(params[:id])
-      render layout: false
+    @task = Task.find(params[:id])
+    render layout: false
+  end
+
+   # Dashboard
+  def dashboard
+    
+  end
+
+    # Report
+  def report
+    @tasks = current_company.tasks
+    respond_to do |formart|
+      formart.xlsx
+    end
   end
 
   private

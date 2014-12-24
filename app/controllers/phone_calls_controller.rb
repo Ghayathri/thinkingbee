@@ -1,5 +1,6 @@
 class PhoneCallsController < ApplicationController
-def index
+  
+  def index
     @phone_calls = current_company.phone_calls
   end
 
@@ -40,8 +41,21 @@ def index
   end
 
   def view_call
-      @phone_call = PhoneCall.find(params[:id])
-      render layout: false
+    @phone_call = PhoneCall.find(params[:id])
+    render layout: false
+  end
+
+   # Dashboard
+  def dashboard
+    
+  end
+
+  # Report
+  def report
+    @phone_calls = current_company.phone_calls
+    respond_to do |format|
+      format.xlsx
+    end
   end
 
   private

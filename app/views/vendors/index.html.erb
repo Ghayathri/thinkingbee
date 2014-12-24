@@ -6,6 +6,8 @@
 					<small><i class="fa fa-truck"></i> Vendor</small>
 					<div class="pull-right">
 						<%= link_to "<i class='fa fa-plus'></i> New Vendor".html_safe, new_vendor_path, class: "btn btn-warning btn-sm" %>
+						<%= link_to "<i class='fa fa-bar-chart-o'></i> Dashboard".html_safe, dashboard_vendors_path, class: "btn btn-success btn-sm" %>
+						<%= link_to "<i class='fa fa-file-excel-o'></i> Report".html_safe, report_vendors_path(:format => :xlsx), class: "btn btn-danger btn-sm" %>
 					</div>
 				</h1>
 			</div>

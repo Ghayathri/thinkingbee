@@ -1,2 +1,16 @@
-<h1>Contacts#edit</h1>
-<p>Find me in app/views/contacts/edit.html.erb</p>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-10">
+			<div class="page-header">
+				<h1><small>Edit Contact</small></h1>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-offset-2 col-lg-5">
+			<%= form_for @contact do |f| %>
+				<%= render 'form', :f => f, :contact => @contact %>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -41,8 +41,21 @@ class PurchaseOrdersController < ApplicationController
   end
 
   def view_order
-      @order = PurchaseOrder.find(params[:id])
-      render layout: false
+    @order = PurchaseOrder.find(params[:id])
+    render layout: false
+  end
+
+   # Dashboard
+  def dashboard
+    
+  end
+
+    # Report
+  def report
+    @purchase_orders = current_company.purchase_orders
+    respond_to do |format|
+      format.xlsx
+    end
   end
 
   private
