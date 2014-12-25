@@ -159,6 +159,9 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.8)
       sprockets-rails (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
     rails_best_practices (1.15.4)
       activesupport
       awesome_print
@@ -169,6 +172,8 @@ GEM
       json
       require_all
       ruby-progressbar
+    rails_serve_static_assets (0.0.3)
+    rails_stdout_logging (0.0.3)
     railties (4.1.8)
       actionpack (= 4.1.8)
       activesupport (= 4.1.8)
@@ -246,6 +251,7 @@ DEPENDENCIES
   protokoll
   pry
   rails (= 4.1.8)
+  rails_12factor
   rails_best_practices
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

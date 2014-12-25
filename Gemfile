@@ -73,3 +73,6 @@ gem 'axlsx_rails'
 
 # Chart
 gem 'chart-js-rails'
+
+# Heroku Gems
+gem 'rails_12factor'
