@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141218041142) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "account_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -34,12 +37,12 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "accounts", ["account_type_id"], name: "index_accounts_on_account_type_id"
-  add_index "accounts", ["company_id"], name: "index_accounts_on_company_id"
-  add_index "accounts", ["owner"], name: "index_accounts_on_owner"
-  add_index "accounts", ["parent_account_id"], name: "index_accounts_on_parent_account_id"
-  add_index "accounts", ["primary_contact"], name: "index_accounts_on_primary_contact"
-  add_index "accounts", ["rating_id"], name: "index_accounts_on_rating_id"
+  add_index "accounts", ["account_type_id"], name: "index_accounts_on_account_type_id", using: :btree
+  add_index "accounts", ["company_id"], name: "index_accounts_on_company_id", using: :btree
+  add_index "accounts", ["owner"], name: "index_accounts_on_owner", using: :btree
+  add_index "accounts", ["parent_account_id"], name: "index_accounts_on_parent_account_id", using: :btree
+  add_index "accounts", ["primary_contact"], name: "index_accounts_on_primary_contact", using: :btree
+  add_index "accounts", ["rating_id"], name: "index_accounts_on_rating_id", using: :btree
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -52,9 +55,9 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -73,8 +76,8 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "addresses", ["address_id"], name: "index_addresses_on_address_id"
-  add_index "addresses", ["address_type"], name: "index_addresses_on_address_type"
+  add_index "addresses", ["address_id"], name: "index_addresses_on_address_id", using: :btree
+  add_index "addresses", ["address_type"], name: "index_addresses_on_address_type", using: :btree
 
   create_table "appointment_statuses", force: true do |t|
     t.string   "name"
@@ -102,11 +105,11 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "appointments", ["appointment_status_id"], name: "index_appointments_on_appointment_status_id"
-  add_index "appointments", ["appointment_type_id"], name: "index_appointments_on_appointment_type_id"
-  add_index "appointments", ["company_id"], name: "index_appointments_on_company_id"
-  add_index "appointments", ["owner"], name: "index_appointments_on_owner"
-  add_index "appointments", ["regarding"], name: "index_appointments_on_regarding"
+  add_index "appointments", ["appointment_status_id"], name: "index_appointments_on_appointment_status_id", using: :btree
+  add_index "appointments", ["appointment_type_id"], name: "index_appointments_on_appointment_type_id", using: :btree
+  add_index "appointments", ["company_id"], name: "index_appointments_on_company_id", using: :btree
+  add_index "appointments", ["owner"], name: "index_appointments_on_owner", using: :btree
+  add_index "appointments", ["regarding"], name: "index_appointments_on_regarding", using: :btree
 
   create_table "call_purposes", force: true do |t|
     t.string   "name"
@@ -155,10 +158,10 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "campaigns", ["campaign_status_id"], name: "index_campaigns_on_campaign_status_id"
-  add_index "campaigns", ["campaign_type_id"], name: "index_campaigns_on_campaign_type_id"
-  add_index "campaigns", ["company_id"], name: "index_campaigns_on_company_id"
-  add_index "campaigns", ["owner"], name: "index_campaigns_on_owner"
+  add_index "campaigns", ["campaign_status_id"], name: "index_campaigns_on_campaign_status_id", using: :btree
+  add_index "campaigns", ["campaign_type_id"], name: "index_campaigns_on_campaign_type_id", using: :btree
+  add_index "campaigns", ["company_id"], name: "index_campaigns_on_company_id", using: :btree
+  add_index "campaigns", ["owner"], name: "index_campaigns_on_owner", using: :btree
 
   create_table "case_origins", force: true do |t|
     t.string   "name"
@@ -204,16 +207,16 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "cases", ["account_id"], name: "index_cases_on_account_id"
-  add_index "cases", ["case_origin_id"], name: "index_cases_on_case_origin_id"
-  add_index "cases", ["case_reason_id"], name: "index_cases_on_case_reason_id"
-  add_index "cases", ["case_status_id"], name: "index_cases_on_case_status_id"
-  add_index "cases", ["case_type_id"], name: "index_cases_on_case_type_id"
-  add_index "cases", ["company_id"], name: "index_cases_on_company_id"
-  add_index "cases", ["contact_id"], name: "index_cases_on_contact_id"
-  add_index "cases", ["owner"], name: "index_cases_on_owner"
-  add_index "cases", ["priority_id"], name: "index_cases_on_priority_id"
-  add_index "cases", ["product_id"], name: "index_cases_on_product_id"
+  add_index "cases", ["account_id"], name: "index_cases_on_account_id", using: :btree
+  add_index "cases", ["case_origin_id"], name: "index_cases_on_case_origin_id", using: :btree
+  add_index "cases", ["case_reason_id"], name: "index_cases_on_case_reason_id", using: :btree
+  add_index "cases", ["case_status_id"], name: "index_cases_on_case_status_id", using: :btree
+  add_index "cases", ["case_type_id"], name: "index_cases_on_case_type_id", using: :btree
+  add_index "cases", ["company_id"], name: "index_cases_on_company_id", using: :btree
+  add_index "cases", ["contact_id"], name: "index_cases_on_contact_id", using: :btree
+  add_index "cases", ["owner"], name: "index_cases_on_owner", using: :btree
+  add_index "cases", ["priority_id"], name: "index_cases_on_priority_id", using: :btree
+  add_index "cases", ["product_id"], name: "index_cases_on_product_id", using: :btree
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -240,11 +243,11 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "contacts", ["account_id"], name: "index_contacts_on_account_id"
-  add_index "contacts", ["company_id"], name: "index_contacts_on_company_id"
-  add_index "contacts", ["lead_source_id"], name: "index_contacts_on_lead_source_id"
-  add_index "contacts", ["owner"], name: "index_contacts_on_owner"
-  add_index "contacts", ["vendor_id"], name: "index_contacts_on_vendor_id"
+  add_index "contacts", ["account_id"], name: "index_contacts_on_account_id", using: :btree
+  add_index "contacts", ["company_id"], name: "index_contacts_on_company_id", using: :btree
+  add_index "contacts", ["lead_source_id"], name: "index_contacts_on_lead_source_id", using: :btree
+  add_index "contacts", ["owner"], name: "index_contacts_on_owner", using: :btree
+  add_index "contacts", ["vendor_id"], name: "index_contacts_on_vendor_id", using: :btree
 
   create_table "descriptions", force: true do |t|
     t.text     "context"
@@ -254,8 +257,8 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "descriptions", ["descripable_id"], name: "index_descriptions_on_descripable_id"
-  add_index "descriptions", ["descripable_type"], name: "index_descriptions_on_descripable_type"
+  add_index "descriptions", ["descripable_id"], name: "index_descriptions_on_descripable_id", using: :btree
+  add_index "descriptions", ["descripable_type"], name: "index_descriptions_on_descripable_type", using: :btree
 
   create_table "event_statuses", force: true do |t|
     t.string   "name"
@@ -277,10 +280,10 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "events", ["company_id"], name: "index_events_on_company_id"
-  add_index "events", ["event_status_id"], name: "index_events_on_event_status_id"
-  add_index "events", ["priority_id"], name: "index_events_on_priority_id"
-  add_index "events", ["related_to"], name: "index_events_on_related_to"
+  add_index "events", ["company_id"], name: "index_events_on_company_id", using: :btree
+  add_index "events", ["event_status_id"], name: "index_events_on_event_status_id", using: :btree
+  add_index "events", ["priority_id"], name: "index_events_on_priority_id", using: :btree
+  add_index "events", ["related_to"], name: "index_events_on_related_to", using: :btree
 
   create_table "generals", force: true do |t|
     t.string   "primary_email"
@@ -330,14 +333,14 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "invoices", ["account_id"], name: "index_invoices_on_account_id"
-  add_index "invoices", ["company_id"], name: "index_invoices_on_company_id"
-  add_index "invoices", ["contact_id"], name: "index_invoices_on_contact_id"
-  add_index "invoices", ["order_status_id"], name: "index_invoices_on_order_status_id"
-  add_index "invoices", ["owner"], name: "index_invoices_on_owner"
-  add_index "invoices", ["product_id"], name: "index_invoices_on_product_id"
-  add_index "invoices", ["purchase_order_id"], name: "index_invoices_on_purchase_order_id"
-  add_index "invoices", ["sales_order_id"], name: "index_invoices_on_sales_order_id"
+  add_index "invoices", ["account_id"], name: "index_invoices_on_account_id", using: :btree
+  add_index "invoices", ["company_id"], name: "index_invoices_on_company_id", using: :btree
+  add_index "invoices", ["contact_id"], name: "index_invoices_on_contact_id", using: :btree
+  add_index "invoices", ["order_status_id"], name: "index_invoices_on_order_status_id", using: :btree
+  add_index "invoices", ["owner"], name: "index_invoices_on_owner", using: :btree
+  add_index "invoices", ["product_id"], name: "index_invoices_on_product_id", using: :btree
+  add_index "invoices", ["purchase_order_id"], name: "index_invoices_on_purchase_order_id", using: :btree
+  add_index "invoices", ["sales_order_id"], name: "index_invoices_on_sales_order_id", using: :btree
 
   create_table "lead_sources", force: true do |t|
     t.string   "name"
@@ -366,11 +369,11 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "leads", ["company_id"], name: "index_leads_on_company_id"
-  add_index "leads", ["industry_id"], name: "index_leads_on_industry_id"
-  add_index "leads", ["lead_source_id"], name: "index_leads_on_lead_source_id"
-  add_index "leads", ["lead_status_id"], name: "index_leads_on_lead_status_id"
-  add_index "leads", ["rating_id"], name: "index_leads_on_rating_id"
+  add_index "leads", ["company_id"], name: "index_leads_on_company_id", using: :btree
+  add_index "leads", ["industry_id"], name: "index_leads_on_industry_id", using: :btree
+  add_index "leads", ["lead_source_id"], name: "index_leads_on_lead_source_id", using: :btree
+  add_index "leads", ["lead_status_id"], name: "index_leads_on_lead_status_id", using: :btree
+  add_index "leads", ["rating_id"], name: "index_leads_on_rating_id", using: :btree
 
   create_table "order_statuses", force: true do |t|
     t.string   "name"
@@ -398,14 +401,14 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "phone_calls", ["call_form"], name: "index_phone_calls_on_call_form"
-  add_index "phone_calls", ["call_purpose_id"], name: "index_phone_calls_on_call_purpose_id"
-  add_index "phone_calls", ["call_status_id"], name: "index_phone_calls_on_call_status_id"
-  add_index "phone_calls", ["call_to"], name: "index_phone_calls_on_call_to"
-  add_index "phone_calls", ["call_type_id"], name: "index_phone_calls_on_call_type_id"
-  add_index "phone_calls", ["company_id"], name: "index_phone_calls_on_company_id"
-  add_index "phone_calls", ["owner"], name: "index_phone_calls_on_owner"
-  add_index "phone_calls", ["related_to"], name: "index_phone_calls_on_related_to"
+  add_index "phone_calls", ["call_form"], name: "index_phone_calls_on_call_form", using: :btree
+  add_index "phone_calls", ["call_purpose_id"], name: "index_phone_calls_on_call_purpose_id", using: :btree
+  add_index "phone_calls", ["call_status_id"], name: "index_phone_calls_on_call_status_id", using: :btree
+  add_index "phone_calls", ["call_to"], name: "index_phone_calls_on_call_to", using: :btree
+  add_index "phone_calls", ["call_type_id"], name: "index_phone_calls_on_call_type_id", using: :btree
+  add_index "phone_calls", ["company_id"], name: "index_phone_calls_on_company_id", using: :btree
+  add_index "phone_calls", ["owner"], name: "index_phone_calls_on_owner", using: :btree
+  add_index "phone_calls", ["related_to"], name: "index_phone_calls_on_related_to", using: :btree
 
   create_table "potential_stages", force: true do |t|
     t.string   "name"
@@ -438,15 +441,15 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "potentials", ["account_id"], name: "index_potentials_on_account_id"
-  add_index "potentials", ["campaign_id"], name: "index_potentials_on_campaign_id"
-  add_index "potentials", ["company_id"], name: "index_potentials_on_company_id"
-  add_index "potentials", ["contact_id"], name: "index_potentials_on_contact_id"
-  add_index "potentials", ["lead_source_id"], name: "index_potentials_on_lead_source_id"
-  add_index "potentials", ["next_step"], name: "index_potentials_on_next_step"
-  add_index "potentials", ["owner"], name: "index_potentials_on_owner"
-  add_index "potentials", ["potential_stage_id"], name: "index_potentials_on_potential_stage_id"
-  add_index "potentials", ["potential_type_id"], name: "index_potentials_on_potential_type_id"
+  add_index "potentials", ["account_id"], name: "index_potentials_on_account_id", using: :btree
+  add_index "potentials", ["campaign_id"], name: "index_potentials_on_campaign_id", using: :btree
+  add_index "potentials", ["company_id"], name: "index_potentials_on_company_id", using: :btree
+  add_index "potentials", ["contact_id"], name: "index_potentials_on_contact_id", using: :btree
+  add_index "potentials", ["lead_source_id"], name: "index_potentials_on_lead_source_id", using: :btree
+  add_index "potentials", ["next_step"], name: "index_potentials_on_next_step", using: :btree
+  add_index "potentials", ["owner"], name: "index_potentials_on_owner", using: :btree
+  add_index "potentials", ["potential_stage_id"], name: "index_potentials_on_potential_stage_id", using: :btree
+  add_index "potentials", ["potential_type_id"], name: "index_potentials_on_potential_type_id", using: :btree
 
   create_table "price_books", force: true do |t|
     t.string   "name"
@@ -458,10 +461,10 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "price_books", ["company_id"], name: "index_price_books_on_company_id"
-  add_index "price_books", ["owner"], name: "index_price_books_on_owner"
-  add_index "price_books", ["pricing_model_id"], name: "index_price_books_on_pricing_model_id"
-  add_index "price_books", ["pricing_status_id"], name: "index_price_books_on_pricing_status_id"
+  add_index "price_books", ["company_id"], name: "index_price_books_on_company_id", using: :btree
+  add_index "price_books", ["owner"], name: "index_price_books_on_owner", using: :btree
+  add_index "price_books", ["pricing_model_id"], name: "index_price_books_on_pricing_model_id", using: :btree
+  add_index "price_books", ["pricing_status_id"], name: "index_price_books_on_pricing_status_id", using: :btree
 
   create_table "pricing_models", force: true do |t|
     t.string   "name"
@@ -511,13 +514,13 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "products", ["company_id"], name: "index_products_on_company_id"
-  add_index "products", ["owner"], name: "index_products_on_owner"
-  add_index "products", ["product_category_id"], name: "index_products_on_product_category_id"
-  add_index "products", ["product_status_id"], name: "index_products_on_product_status_id"
-  add_index "products", ["tax_id"], name: "index_products_on_tax_id"
-  add_index "products", ["usage_unit_id"], name: "index_products_on_usage_unit_id"
-  add_index "products", ["vendor_id"], name: "index_products_on_vendor_id"
+  add_index "products", ["company_id"], name: "index_products_on_company_id", using: :btree
+  add_index "products", ["owner"], name: "index_products_on_owner", using: :btree
+  add_index "products", ["product_category_id"], name: "index_products_on_product_category_id", using: :btree
+  add_index "products", ["product_status_id"], name: "index_products_on_product_status_id", using: :btree
+  add_index "products", ["tax_id"], name: "index_products_on_tax_id", using: :btree
+  add_index "products", ["usage_unit_id"], name: "index_products_on_usage_unit_id", using: :btree
+  add_index "products", ["vendor_id"], name: "index_products_on_vendor_id", using: :btree
 
   create_table "purchase_orders", force: true do |t|
     t.string   "name"
@@ -538,12 +541,12 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "purchase_orders", ["company_id"], name: "index_purchase_orders_on_company_id"
-  add_index "purchase_orders", ["contact_id"], name: "index_purchase_orders_on_contact_id"
-  add_index "purchase_orders", ["order_status_id"], name: "index_purchase_orders_on_order_status_id"
-  add_index "purchase_orders", ["owner"], name: "index_purchase_orders_on_owner"
-  add_index "purchase_orders", ["product_id"], name: "index_purchase_orders_on_product_id"
-  add_index "purchase_orders", ["vendor_id"], name: "index_purchase_orders_on_vendor_id"
+  add_index "purchase_orders", ["company_id"], name: "index_purchase_orders_on_company_id", using: :btree
+  add_index "purchase_orders", ["contact_id"], name: "index_purchase_orders_on_contact_id", using: :btree
+  add_index "purchase_orders", ["order_status_id"], name: "index_purchase_orders_on_order_status_id", using: :btree
+  add_index "purchase_orders", ["owner"], name: "index_purchase_orders_on_owner", using: :btree
+  add_index "purchase_orders", ["product_id"], name: "index_purchase_orders_on_product_id", using: :btree
+  add_index "purchase_orders", ["vendor_id"], name: "index_purchase_orders_on_vendor_id", using: :btree
 
   create_table "quote_stages", force: true do |t|
     t.string   "name"
@@ -564,12 +567,12 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "quotes", ["account_id"], name: "index_quotes_on_account_id"
-  add_index "quotes", ["company_id"], name: "index_quotes_on_company_id"
-  add_index "quotes", ["contact_id"], name: "index_quotes_on_contact_id"
-  add_index "quotes", ["owner"], name: "index_quotes_on_owner"
-  add_index "quotes", ["potential_id"], name: "index_quotes_on_potential_id"
-  add_index "quotes", ["quote_stage_id"], name: "index_quotes_on_quote_stage_id"
+  add_index "quotes", ["account_id"], name: "index_quotes_on_account_id", using: :btree
+  add_index "quotes", ["company_id"], name: "index_quotes_on_company_id", using: :btree
+  add_index "quotes", ["contact_id"], name: "index_quotes_on_contact_id", using: :btree
+  add_index "quotes", ["owner"], name: "index_quotes_on_owner", using: :btree
+  add_index "quotes", ["potential_id"], name: "index_quotes_on_potential_id", using: :btree
+  add_index "quotes", ["quote_stage_id"], name: "index_quotes_on_quote_stage_id", using: :btree
 
   create_table "ratings", force: true do |t|
     t.string   "name"
@@ -596,14 +599,14 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "sales_orders", ["account_id"], name: "index_sales_orders_on_account_id"
-  add_index "sales_orders", ["company_id"], name: "index_sales_orders_on_company_id"
-  add_index "sales_orders", ["contact_id"], name: "index_sales_orders_on_contact_id"
-  add_index "sales_orders", ["order_status_id"], name: "index_sales_orders_on_order_status_id"
-  add_index "sales_orders", ["owner"], name: "index_sales_orders_on_owner"
-  add_index "sales_orders", ["potential_id"], name: "index_sales_orders_on_potential_id"
-  add_index "sales_orders", ["purchase_order_id"], name: "index_sales_orders_on_purchase_order_id"
-  add_index "sales_orders", ["quote_id"], name: "index_sales_orders_on_quote_id"
+  add_index "sales_orders", ["account_id"], name: "index_sales_orders_on_account_id", using: :btree
+  add_index "sales_orders", ["company_id"], name: "index_sales_orders_on_company_id", using: :btree
+  add_index "sales_orders", ["contact_id"], name: "index_sales_orders_on_contact_id", using: :btree
+  add_index "sales_orders", ["order_status_id"], name: "index_sales_orders_on_order_status_id", using: :btree
+  add_index "sales_orders", ["owner"], name: "index_sales_orders_on_owner", using: :btree
+  add_index "sales_orders", ["potential_id"], name: "index_sales_orders_on_potential_id", using: :btree
+  add_index "sales_orders", ["purchase_order_id"], name: "index_sales_orders_on_purchase_order_id", using: :btree
+  add_index "sales_orders", ["quote_id"], name: "index_sales_orders_on_quote_id", using: :btree
 
   create_table "solution_statuses", force: true do |t|
     t.string   "name"
@@ -623,10 +626,10 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "solutions", ["company_id"], name: "index_solutions_on_company_id"
-  add_index "solutions", ["owner"], name: "index_solutions_on_owner"
-  add_index "solutions", ["product_id"], name: "index_solutions_on_product_id"
-  add_index "solutions", ["solution_status_id"], name: "index_solutions_on_solution_status_id"
+  add_index "solutions", ["company_id"], name: "index_solutions_on_company_id", using: :btree
+  add_index "solutions", ["owner"], name: "index_solutions_on_owner", using: :btree
+  add_index "solutions", ["product_id"], name: "index_solutions_on_product_id", using: :btree
+  add_index "solutions", ["solution_status_id"], name: "index_solutions_on_solution_status_id", using: :btree
 
   create_table "task_categories", force: true do |t|
     t.string   "name"
@@ -653,11 +656,11 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "tasks", ["company_id"], name: "index_tasks_on_company_id"
-  add_index "tasks", ["owner"], name: "index_tasks_on_owner"
-  add_index "tasks", ["priority_id"], name: "index_tasks_on_priority_id"
-  add_index "tasks", ["task_category_id"], name: "index_tasks_on_task_category_id"
-  add_index "tasks", ["task_status_id"], name: "index_tasks_on_task_status_id"
+  add_index "tasks", ["company_id"], name: "index_tasks_on_company_id", using: :btree
+  add_index "tasks", ["owner"], name: "index_tasks_on_owner", using: :btree
+  add_index "tasks", ["priority_id"], name: "index_tasks_on_priority_id", using: :btree
+  add_index "tasks", ["task_category_id"], name: "index_tasks_on_task_category_id", using: :btree
+  add_index "tasks", ["task_status_id"], name: "index_tasks_on_task_status_id", using: :btree
 
   create_table "taxes", force: true do |t|
     t.string   "name"
@@ -691,9 +694,9 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "users", ["company_id"], name: "index_users_on_company_id"
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["company_id"], name: "index_users_on_company_id", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "vendors", force: true do |t|
     t.string   "name"
@@ -707,8 +710,8 @@ ActiveRecord::Schema.define(version: 20141218041142) do
     t.datetime "updated_at"
   end
 
-  add_index "vendors", ["company_id"], name: "index_vendors_on_company_id"
-  add_index "vendors", ["gl_account_id"], name: "index_vendors_on_gl_account_id"
-  add_index "vendors", ["owner"], name: "index_vendors_on_owner"
+  add_index "vendors", ["company_id"], name: "index_vendors_on_company_id", using: :btree
+  add_index "vendors", ["gl_account_id"], name: "index_vendors_on_gl_account_id", using: :btree
+  add_index "vendors", ["owner"], name: "index_vendors_on_owner", using: :btree
 
 end
